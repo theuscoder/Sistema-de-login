@@ -4,31 +4,29 @@ session_start();
 
 require_once("src/php/conn.php");
 
-$host = "localhost";
-$user = "root";
-$passwod = "";
-$db = "seu nome";
 $email = $_POST['email'];
+$senha = $_POST['senha'];
 $dominio = "http://localhost:2000";
 
 // redireciona o usuário pra outra página caso o login esteja correto
-$url = "$dominio/entrada.php?email=$email";
+$url = "$dominio/dash.php";
    
 // redireciona o usuário pra outra página caso o login esteja incorreto
-$url2 = "$dominio/login.php";
+$url2 = "$dominio/index.php";
 
 
 //Verificar se o email e a senha está definido e remove as tags html e escapa as aspas simples.
 
-if (!empty($email) && !empty($senha)) {
+if (empty($email) && empty($senha)) {
 
+
+} else {
 $email = strip_tags($email);
 $email = addslashes($email);
 
 $senha = strip_tags($senha);
 $senha = addslashes($senha);
-} else {
-  
+
 }
 
     // prepara o comando pro banco de dados
@@ -37,44 +35,24 @@ $senha = addslashes($senha);
     // envia o valor que esta no $email 
     $stmt->bindParam(":email", $email);
     
-    // Enbia o comando pro banco de dados
+    // Envia o comando pro banco de dados
     $stmt->execute();
-    
-    // Transforma os dados da consulta sql em objetos
-    $dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
-    
-////////////////////////////////////////////////////// 
    
-    $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, "https://www.google.com/recaptcha/api/siteverify");
-curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-
-curl_setopt($ch,CURLOPT_POSTFIELDS, http_build_query(array(
-  "secret" => "6Le0ENopAAAAAPqsU0wVA85r4c-Sjh0yHZjySOg6",
-  "response" => $_POST["g-recaptcha-response"],
-  "remoteip" => $_SERVER['REMOTE_ADDR']
-  )));
-
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-$recaptcha = json_decode(curl_exec($ch), true);
-
-curl_close($ch);
-
-if ($recaptcha["success"] === true) {
+    // Transforma os dados da consulta sql em objetos
+    $dados = $stmt->fetchAll(PDO::FETCH_ASSOC); 
+   
 
     // Verifica o usuario e a senha
-    if ($dados['email'] === $email && $dados['senha'] == $senha) {
+    if ($email == $dados['email'] && $senha == $dados['senha']) {
+    
+    //caso estiver certo redireciona o usuário pra o endereço da $url
      echo "Logado com sucesso!";
+     
     } else {
-    echo "email ou senha invalidos!";
-    }
-
-} else {
-header("Location: $url2");
-}
-
+    
+    //caso não estiver certo redireciona o usuário pra o endereço da $url2
+    header("Location: $url2");
+    
+   }
 
 ?>

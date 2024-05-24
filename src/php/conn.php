@@ -1,4 +1,12 @@
 <?php
+// Hospedagem
+$host = "localhost";
+// Usuario
+$user = "root";
+// Senha
+$passwod = "";
+// sua db
+$db = "nome da sua db";
 
 try {
     // Conexão com o banco de dados

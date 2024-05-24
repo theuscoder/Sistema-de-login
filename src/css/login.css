@@ -1,0 +1,112 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Ubuntu', Sans-Serif;
+}
+
+:root {
+    --cor-primaria: #333 ;
+    --cor-secundaria: hsl(276, 75%, 53%);
+    --cor-reserva: white;
+    --cor-reservat: hsl(277, 80%, 30%);
+    --cor-reservad: #2C2828;
+    --cor-terceira: black;
+    --fundoum: #222;
+}
+
+body {
+    background: var(--fundoum) center no-repeat;
+}
+
+.d-flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.container-login {
+    width: 400px;
+    display: flex;
+    flex-direction: row;
+    margin: 0 5px;
+}
+
+.wrapper-login {
+    width: 100%;
+    background-color: var(--cor-primaria);
+    border-radius: 5px;
+    box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 1);
+}
+
+.wrapper-login .title {
+    height: 90px;
+    background-color: var(--cor-reservat);
+    border-radius: 5px 5px 0 0;
+    color: var(--cor-reserva);
+    font-size: 30px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper-login .form-login {
+    padding: 25px;
+}
+
+.wrapper-login .form-login .row {
+    height: 45px;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.wrapper-login .form-login .row input {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    padding-left: 60px;
+    border-radius: 5px;
+    border: 1px solid var(--cor-secundaria);
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.wrapper-login .form-login .row i {
+    position: absolute;
+    width: 47px;
+    height: 100%;
+    color: var(--cor-reserva);
+    font-size: 18px;
+    background-color: var(--cor-reservat);
+    border: 1px solid var(--cor-secundaria);
+    border-radius: 5px 0 0 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper-login .form-login .button input {
+    color: var(--cor-reserva);
+    font-size: 20px;
+    font-weight: 300;
+    padding-left: 0;
+    background-color: var(--cor-secundaria);
+    border: 1px solid var(--cor-reservat);
+    cursor: pointer;
+}
+
+.form-login .button input:hover {
+    background: var(--cor-reservat);
+    border: 1px solid var(--cor-secundaria);
+}
+
+.wrapper-login .form-login .signup-link a {
+    color: var(--cor-reserva);
+    text-decoration: none;
+}
+
+.form-login .signup-link a:hover {
+    color: var(--cor-secundaria);
+}
